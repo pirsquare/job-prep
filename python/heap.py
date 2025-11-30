@@ -74,7 +74,7 @@ heap = []
 def transform_value(value):
     return len(value)
 
-# no built-in max heap so use negative
+# use function to transform first comparison value
 for value in values:
     pair = (transform_value(value), value)
     heapq.heappush(heap, pair)
