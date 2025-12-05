@@ -1,8 +1,29 @@
 import heapq
 
+
+
+
 def dijkstra(graph, start_node):
     """
-    Finds the shortest paths from a start_node to all other nodes in a graph.
+    Core Idea:
+    Initialize: Start with the source node having a distance of 0 and all other nodes having an "infinite" distance.
+    Explore: Repeatedly select the unvisited node with the smallest known distance.
+    Update Neighbors: For the selected node, examine its unvisited neighbors. If a shorter path to a neighbor is found through the current node, update the neighbor's distance.
+    Mark Visited: Mark the current node as visited.
+    Repeat: Continue until all reachable nodes are visited.
+
+    Explanation of the Code:
+    heapq: Used to implement a min-priority queue, efficiently retrieving the unvisited node with the smallest distance.
+
+    distances dictionary: Stores the shortest distance found so far from start_node to each node.
+
+    priority_queue: Stores tuples of (distance, node). heapq.heappop always retrieves the tuple with the smallest distance.
+
+    current_distance > distances[current_node] check: Prevents reprocessing nodes if a shorter path has already been found and processed.
+
+    Neighbor exploration: Iterates through the neighbors of the current_node and calculates the distance to them through the current_node.
+
+    Distance Update: If a new distance to a neighbor is shorter than its currently recorded distances[neighbor], it's updated, and the neighbor is added to the priority_queue with its new distance.
 
     Args:
         graph (dict): An adjacency list representation of the graph.
@@ -18,6 +39,10 @@ def dijkstra(graph, start_node):
     distances[start_node] = 0
     priority_queue = [(0, start_node)]  # (distance, node)
 
+    # priority_queue = []  # (distance, node)
+    # for node, distance in distances.items():
+    #     priority_queue.append((distance, node))
+
     while priority_queue:
         current_distance, current_node = heapq.heappop(priority_queue)
 
@@ -27,10 +52,9 @@ def dijkstra(graph, start_node):
 
         for neighbor, weight in graph[current_node].items():
             distance = current_distance + weight
-            if distance < distances[neighbor]:
+            if distances[neighbor] > distance:
                 distances[neighbor] = distance
                 heapq.heappush(priority_queue, (distance, neighbor))
-
     return distances
 
 # Example Usage:
