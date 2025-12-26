@@ -1,7 +1,9 @@
 
 # dfs recursive approach
 # recursive approach is simpler and cleaner
-def dfs_recursive(graph, start_node, visited=set()):
+def dfs_recursive(graph, start_node, visited=None):
+    if visited is None:
+        visited = set()
     visited.add(start_node)
     print(start_node, end=" ")  # Process the node (e.g., print it)
 

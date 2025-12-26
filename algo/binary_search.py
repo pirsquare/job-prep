@@ -15,7 +15,7 @@ def binary_search(sorted_list, target):
     high = len(sorted_list) - 1
 
     while high >= low:
-        mid = int((low + high)/2)  # Calculate the middle index
+        mid = low + (high - low) // 2  # Calculate the middle index (avoids overflow)
         mid_value = sorted_list[mid]
 
         if mid_value == target:

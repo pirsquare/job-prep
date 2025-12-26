@@ -14,8 +14,7 @@ def insert(root, key):
 
     if root.val > key:
         root.left = insert(root.left, key)
-
-    if key > root.val:
+    elif key > root.val:
         root.right = insert(root.right, key)
     # Handle duplicates if needed; this example ignores them
     return root
