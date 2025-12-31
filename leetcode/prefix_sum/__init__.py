@@ -1,6 +1,8 @@
 
 
 # What is Prefix Sum?
+# sliding window good for min, max
+# prefix sum good use it if need some sort of tracking and counting, for comparison with K.
 
 # Prefix Sum is a technique where you precompute cumulative sums so that range sum queries can be answered in O(1) time instead of O(n).
 # Core Idea
