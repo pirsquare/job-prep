@@ -1,4 +1,4 @@
-from collections import deque
+from collections import Counter
 
 
 # Find all anagrams in a string (FREQUENCY MAP window)
@@ -48,3 +48,36 @@ def find_anagrams(s, p):
 
 print(find_anagrams(s, p))
 # [0, 6]
+
+
+# recommended solution
+def find_anagrams(string, ss):
+    ss_len = len(ss)
+    string_len = len(string)
+
+    if ss_len > string_len:
+        return []
+
+    need = Counter(ss)
+    window = Counter(string[:ss_len])
+
+    print(f"need: {need}")
+    print(f"window: {window}")
+
+    res = []
+    if window == need:
+        res.append(0)
+
+    for i in range(ss_len, string_len):
+        window[string[i]] += 1
+        left_char = string[i - ss_len]
+        window[left_char] -= 1
+
+        if window[left_char] == 0:
+            del window[left_char]
+
+        if window == need:
+            res.append(i - ss_len + 1)
+    return res
+
+print(find_anagrams(s, p))

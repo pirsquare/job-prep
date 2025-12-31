@@ -14,17 +14,17 @@ def longest_unique_substring(string):
     seen = set()
     left = 0
 
-    for right in range(len(s)):
-        while s[right] in seen:
-            seen.remove(s[left])
+    for right in range(len(string)):
+        while string[right] in seen:
+            seen.remove(string[left])
             left += 1
 
-        seen.add(s[right])
+        seen.add(string[right])
         max_len = max(max_len, right-left+1)
 
         print(f"left: {left}")
         print(f"right: {right}")
-    return (max_len)
+    return max_len
 
 
 

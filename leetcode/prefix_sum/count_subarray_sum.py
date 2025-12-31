@@ -1,6 +1,9 @@
 
 
+# Prefix Sum + Hash Map
 # Count Subarrays With Sum = K
+
+
 # Subarray sum equals K
 # Problem
 # Given an integer array nums and an integer k, return the number of contiguous subarrays whose sum equals k.
